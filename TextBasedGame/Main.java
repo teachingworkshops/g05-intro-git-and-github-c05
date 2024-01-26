@@ -1,21 +1,65 @@
 // Main.java
+import java.util.ArrayList;
 import java.util.Scanner;
+import java.io.File;
+import java.io.FileNotFoundException;
 
 public class Main {
-    public static void main(String[] args) {
-        Room room1 = new Room("Room 1", "This is the starting room.");
-        Room room2 = new Room("Room 2", "This room is dark and mysterious.");
-        Room room3 = new Room("Room 3", "You see a light at the end of this room.");
+   
+
+    public static void connectRooms(ArrayList<Room> rooms) throws FileNotFoundException{
+        // Loop through each room except the last one
+        
+
+        for (int i = 0; i < rooms.size() - 1; i++) {
+            Room currentRoom = rooms.get(i);
+            Room nextRoom = rooms.get(i + 1);
+
+            // Set the right room for the current room
+            currentRoom.setRightRoom(nextRoom);
+
+            // Set the left room for the next room
+            nextRoom.setLeftRoom(currentRoom);
+        }
+    }
+
+    public static ArrayList<Room> makeRooms() throws FileNotFoundException{
+        String fileName = "C:\\Users\\shneydermand\\Documents\\GitHub\\g05-intro-git-and-github-c05\\TextBasedGame\\roomsConfig.txt";
+        File configFile = new File(fileName);
+        Scanner in = new Scanner(configFile);
+        ArrayList<Room> rooms = new ArrayList<Room>();
+
+        Room entranceRoom = new Room("Entrance Room", "You are in the Entrance Hall. Moss-covered walls surround you, and the air is damp. The faint glow reveals a path leading deeper into the dungeon.");
         Room exitRoom = new Room("Exit Room", "Congratulations! You made it out!", true);
 
-        room1.setLeftRoom(room2);
-        room1.setRightRoom(room3);
-        room3.setRightRoom(exitRoom); // Set the exit room at the end of room3
+        rooms.add(entranceRoom);
 
-        Player player = new Player(room1);
+        int roomID = 1;
+        String description = "";
+        while(in.hasNextLine()){
+            description=in.nextLine();
+            rooms.add(new Room("Room "+roomID,description));
+            roomID++;
+        }
+        rooms.add(exitRoom);
+
+        for(Room room : rooms){
+            System.out.println(room.getName() +" "+room.getDescription());
+        }
+        in.close();
+        return rooms;
+    }
+
+    public static void main(String[] args) throws FileNotFoundException{
+
+        
+        ArrayList<Room> rooms = makeRooms();//creates rooms from config file
+        connectRooms(rooms);//connects rooms
+        Player player = new Player(rooms.get(0));
 
         Scanner scanner = new Scanner(System.in);
         System.out.println("You don't know where you are other than the fact that you are in a room. There must be a way out of here...");
+
 
         while (true) {
             System.out.println("Description: " + player.getCurrentRoom().getDescription());

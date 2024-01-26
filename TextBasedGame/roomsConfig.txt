@@ -1,0 +1,6 @@
+Spider's Den: You find yourself in the Spider's Den. Webs cover the ceiling, and the musty scent of decay lingers. Be cautious, as the floor seems to crunch with every step.
+Torture Chamber: Welcome to the Torture Chamber. Rusty chains dangle from the walls, and ominous devices occupy the center of the room. The air feels heavy with suffering.
+Cavern of Shadows: You enter the Cavern of Shadows. The low ceiling forces you to crouch, and the walls play host to dancing shadows. The air is thick with an unsettling silence.
+Flooded Passage: Navigating the Flooded Passage, the ground is submerged in ankle-deep water. Algae-covered walls surround you, and a faint glow reflects off the rippling water.
+Collapsed Chamber: You find yourself in the Collapsed Chamber. Debris and fallen stones block your path, and the air is thick with dust. Be wary, as unstable structures creak intermittently.
+Sacrificial Altar: The Sacrificial Altar stands before you. Dried blood stains the ominous altar, and sinister symbols decorate the walls. A chilling breeze whispers through the chamber.
