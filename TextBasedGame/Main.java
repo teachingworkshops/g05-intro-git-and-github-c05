@@ -28,22 +28,45 @@ public class Main {
         while (i < roomCount) {
             Room parent = queue.poll();//grabs current room to assign children to
     
-            // Connect the left child
-            if (i < roomCount) {
-                Room leftChild = rooms[i];
-                parent.setLeftRoom(leftChild);
-                leftChild.setBackRoom(parent); // Save back room
-                queue.offer(leftChild);
-                i++;
-            }
-    
-            // Connect the right child
-            if (i < roomCount) {
-                Room rightChild = rooms[i];
-                parent.setRightRoom(rightChild);
-                rightChild.setBackRoom(parent); // Save back room
-                queue.offer(rightChild);
-                i++;
+
+            if(Math.random()>0.5){ //randomly assigns the next 2 rooms (50% left-right, 50% right-left)
+                // Connect the left child
+                if (i < roomCount) {
+                    Room leftChild = rooms[i];
+                    parent.setLeftRoom(leftChild);
+                    leftChild.setBackRoom(parent); // Save back room
+                    queue.offer(leftChild);
+                    i++;
+                }
+        
+                // Connect the right child
+                if (i < roomCount) {
+                    Room rightChild = rooms[i];
+                    parent.setRightRoom(rightChild);
+                    rightChild.setBackRoom(parent); // Save back room
+                    queue.offer(rightChild);
+                    i++;
+                }
+            }else{
+                
+        
+                // Connect the right child
+                if (i < roomCount) {
+                    Room rightChild = rooms[i];
+                    parent.setRightRoom(rightChild);
+                    rightChild.setBackRoom(parent); // Save back room
+                    queue.offer(rightChild);
+                    i++;
+                }
+
+                // Connect the left child
+                if (i < roomCount) {
+                    Room leftChild = rooms[i];
+                    parent.setLeftRoom(leftChild);
+                    leftChild.setBackRoom(parent); // Save back room
+                    queue.offer(leftChild);
+                    i++;
+                }
             }
         }
     }
@@ -81,7 +104,7 @@ public class Main {
         ArrayList<Room> rooms = makeRooms(); // creates rooms from config file
         Room[] roomsArray = rooms.toArray(new Room[rooms.size()]);
         connectRooms(roomsArray); // connects rooms
-        Player player = new Player(rooms.get(0));
+        Player player = new Player(rooms.get(0));//creates player in start room
     
         Scanner scanner = new Scanner(System.in);
         System.out.println("You don't know where you are other than the fact that you are in a room. There must be a way out of here...");
