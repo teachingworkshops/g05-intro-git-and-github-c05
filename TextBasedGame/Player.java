@@ -19,7 +19,7 @@ public class Player {
         if (currentRoom.getLeftRoom() != null) {
             setCurrentRoom(currentRoom.getLeftRoom());
         } else {
-            System.out.println("Cannot move left. No room available.");
+            System.out.println("////THE LEFT DOOR WON'T OPEN!////");
         }
     }
 
@@ -27,7 +27,15 @@ public class Player {
         if (currentRoom.getRightRoom() != null) {
             setCurrentRoom(currentRoom.getRightRoom());
         } else {
-            System.out.println("Cannot move right. No room available.");
+            System.out.println("////THE RIGHT DOOR WON'T OPEN!////");
+        }
+    }
+
+    public void moveBack() {
+        if (currentRoom.getBackRoom() != null) {
+            setCurrentRoom(currentRoom.getBackRoom());
+        } else {
+            System.out.println("////THE BACK DOOR WON'T OPEN!////");
         }
     }
 }

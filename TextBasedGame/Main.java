@@ -1,5 +1,7 @@
 // Main.java
 import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.Queue;
 import java.util.Scanner;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -7,21 +9,46 @@ import java.io.FileNotFoundException;
 public class Main {
    
 
-    public static void connectRooms(ArrayList<Room> rooms) throws FileNotFoundException{
-        // Loop through each room except the last one
-        
-
-        for (int i = 0; i < rooms.size() - 1; i++) {
-            Room currentRoom = rooms.get(i);
-            Room nextRoom = rooms.get(i + 1);
-
-            // Set the right room for the current room
-            currentRoom.setRightRoom(nextRoom);
-
-            // Set the left room for the next room
-            nextRoom.setLeftRoom(currentRoom);
+    public static void connectRooms(Room[] rooms) throws FileNotFoundException {
+        int roomCount = rooms.length;
+    
+        // Special case for an empty array
+        if (roomCount == 0) {
+            return;
+        }
+    
+        Room root = rooms[0];//sets entrance as root
+    
+        // use a queue to maintain the parent nodes for connecting children
+        Queue<Room> queue = new LinkedList<>();
+        queue.offer(root);//
+    
+        int i = 1;//ignores start room
+    
+        while (i < roomCount) {
+            Room parent = queue.poll();//grabs current room to assign children to
+    
+            // Connect the left child
+            if (i < roomCount) {
+                Room leftChild = rooms[i];
+                parent.setLeftRoom(leftChild);
+                leftChild.setBackRoom(parent); // Save back room
+                queue.offer(leftChild);
+                i++;
+            }
+    
+            // Connect the right child
+            if (i < roomCount) {
+                Room rightChild = rooms[i];
+                parent.setRightRoom(rightChild);
+                rightChild.setBackRoom(parent); // Save back room
+                queue.offer(rightChild);
+                i++;
+            }
         }
     }
+    
+    
 
     public static ArrayList<Room> makeRooms() throws FileNotFoundException{
         String fileName = "C:\\Users\\shneydermand\\Documents\\GitHub\\g05-intro-git-and-github-c05\\TextBasedGame\\roomsConfig.txt";
@@ -43,36 +70,42 @@ public class Main {
         }
         rooms.add(exitRoom);
 
-        for(Room room : rooms){
+        /*for(Room room : rooms){
             System.out.println(room.getName() +" "+room.getDescription());
-        }
+        }*/
         in.close();
         return rooms;
     }
 
-    public static void main(String[] args) throws FileNotFoundException{
-
-        
-        ArrayList<Room> rooms = makeRooms();//creates rooms from config file
-        connectRooms(rooms);//connects rooms
+    public static void main(String[] args) throws FileNotFoundException {
+        ArrayList<Room> rooms = makeRooms(); // creates rooms from config file
+        Room[] roomsArray = rooms.toArray(new Room[rooms.size()]);
+        connectRooms(roomsArray); // connects rooms
         Player player = new Player(rooms.get(0));
-
+    
         Scanner scanner = new Scanner(System.in);
         System.out.println("You don't know where you are other than the fact that you are in a room. There must be a way out of here...");
-
-
+    
+        int steps = 0;
+    
         while (true) {
             System.out.println("Description: " + player.getCurrentRoom().getDescription());
-            System.out.println("Choose a door: (L)eft, (R)ight, (Q)uit");
-
+            System.out.println("Choose a door: (L)eft, (R)ight, (B)ack, (Q)uit\n-----------------------------------------------------");
+    
             String choice = scanner.next();
-
+    
             switch (choice.toUpperCase()) {
                 case "L":
                     player.moveLeft();
+                    steps++;
                     break;
                 case "R":
                     player.moveRight();
+                    steps++;
+                    break;
+                case "B":
+                    player.moveBack();
+                    steps++;
                     break;
                 case "Q":
                     System.out.println("Exiting the game. Goodbye!");
@@ -80,11 +113,15 @@ public class Main {
                 default:
                     System.out.println("Invalid choice. Try again.");
             }
-
+    
+            System.out.println("Running count of steps: " + steps); // Print the running count of steps
+    
             if (player.getCurrentRoom().isExit()) {
-                System.out.println("Congratulations! You made it out!");
+                scanner.close();
+                System.out.println("Congratulations! You made it out in " + steps + " steps!");
                 System.exit(0);
             }
         }
     }
+    
 }

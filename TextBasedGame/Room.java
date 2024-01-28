@@ -6,6 +6,8 @@ public class Room {
 
     private Room leftRoom;
     private Room rightRoom;
+    private Room backRoom;
+
 
     public Room(String name, String description) {
         this.name = name;
@@ -31,6 +33,14 @@ public class Room {
         return description;
     }
 
+    public Room getBackRoom() {
+        return backRoom;
+    }
+
+    public void setBackRoom(Room backRoom) {
+        this.backRoom = backRoom;
+    }
+
     public Room getLeftRoom() {
         return leftRoom;
     }
@@ -45,5 +55,9 @@ public class Room {
 
     public void setRightRoom(Room rightRoom) {
         this.rightRoom = rightRoom;
+    }
+
+    public void stringify (){
+        System.out.printf("Name: %s, Left: %s, Right: %s",this.name,this.leftRoom.name,this.rightRoom.name);
     }
 }
