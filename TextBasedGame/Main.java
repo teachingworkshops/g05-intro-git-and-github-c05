@@ -138,6 +138,12 @@ public class Main {
             }
     
             System.out.println("Running count of steps: " + steps); // Print the running count of steps
+
+            if(player.getCurrentRoom().isVisited()){//tells player if they have been in the room before
+                System.out.println("You have been in this room before...");
+            }else{
+                System.out.println("This room seems new...");
+            }
     
             if (player.getCurrentRoom().isExit()) {
                 scanner.close();
