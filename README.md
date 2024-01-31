@@ -1,25 +1,25 @@
-#The Cave
+# The Cave
 
-###General
+### General
 The goal of the game is to get out in the minimum number of steps.
 
-###Config
+### Config
 There is a config file called 'roomsConfig.txt' where you can enter as many lines of room descriptions as you want which will be used to create a maximally balanced tree of rooms.
 
-###Randomness
+### Randomness
 Each time the game is run, rooms will be assigned randomly so the path to the exit that once worked will not work again.
 
-###Score Calculation
+### Score Calculation
 
 The less steps it takes the player to escape the better they did.
 Steps include going left, right, and back.
 
-###Rooms
+### Rooms
 Each room has a name and a description which will give the player a more immersive feeling while they enjoy our wonderful text base game.
 
 Each time the player enters the room, they will see a hint which tells them whether they have been there before.
 
-###Controls
+### Controls
 Players move by typing certain commands. 
 B = Back, L = Left, R = Right, and if you get too scared playing our game then enter Q to quit.
 
