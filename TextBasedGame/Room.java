@@ -3,7 +3,6 @@ public class Room {
     private String name;
     private String description;
     private boolean isExit;
-    private boolean visited;
 
     private Room leftRoom;
     private Room rightRoom;
@@ -14,7 +13,6 @@ public class Room {
         this.name = name;
         this.description = description;
         this.isExit = false;
-        this.visited = false;
 
     }
 
@@ -63,11 +61,5 @@ public class Room {
         System.out.printf("Name: %s, Left: %s, Right: %s",this.name,this.leftRoom.name,this.rightRoom.name);
     }
 
-    public void visit(){
-        this.visited = true;
-    }
-
-    public boolean isVisited(){
-        return this.visited;
-    }
+    
 }

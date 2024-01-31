@@ -4,7 +4,6 @@ public class Player {
 
     public Player(Room startingRoom) {
         this.currentRoom = startingRoom;
-        this.currentRoom.visit();
     }
 
 
@@ -14,7 +13,6 @@ public class Player {
 
     public void setCurrentRoom(Room currentRoom) {
         this.currentRoom = currentRoom;
-        this.currentRoom.visit();
     }
 
     public void moveLeft() {
