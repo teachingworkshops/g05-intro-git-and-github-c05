@@ -1,5 +1,9 @@
 # The Cave
 
+### Team
+Developed by team C05 
+Members: Nael Al-Assaad, Peter Garrity, Noah Johnson, David Shneyderman
+
 ### General
 The goal of the game is to get out in the minimum number of steps.
 
