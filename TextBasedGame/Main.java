@@ -74,7 +74,7 @@ public class Main {
     
 
     public static ArrayList<Room> makeRooms() throws FileNotFoundException{
-        String fileName = "C:\\Users\\shneydermand\\Documents\\GitHub\\g05-intro-git-and-github-c05\\TextBasedGame\\roomsConfig.txt";
+        String fileName = "TextBasedGame\\roomsConfig.txt";
         File configFile = new File(fileName);
         Scanner in = new Scanner(configFile);
         ArrayList<Room> rooms = new ArrayList<Room>();
