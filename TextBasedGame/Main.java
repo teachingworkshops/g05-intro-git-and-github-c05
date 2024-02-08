@@ -74,7 +74,7 @@ public class Main {
     
 
     public static ArrayList<Room> makeRooms() throws FileNotFoundException{
-        String fileName = "C:\\Users\\shneydermand\\Documents\\GitHub\\g05-intro-git-and-github-c05\\TextBasedGame\\roomsConfig.txt";
+        String fileName = "roomsConfig.txt";
         File configFile = new File(fileName);
         Scanner in = new Scanner(configFile);
         ArrayList<Room> rooms = new ArrayList<Room>();
@@ -133,6 +133,9 @@ public class Main {
                 case "Q":
                     System.out.println("Exiting the game. Goodbye!");
                     System.exit(0);
+                case "RESET":
+                    System.out.println("Resetting step count.");
+                    steps = 0;
                 default:
                     System.out.println("Invalid choice. Try again.");
             }
@@ -147,6 +150,5 @@ public class Main {
                 System.exit(0);
             }
         }
-    }
-    
+    }   
 }
