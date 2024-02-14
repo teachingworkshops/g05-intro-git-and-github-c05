@@ -1,9 +1,11 @@
 // Player.java
 public class Player {
     private Room currentRoom;
+    private boolean hasItem; // boolean that checks if player has grabbed the item
 
-    public Player(Room startingRoom) {
+    public Player(Room startingRoom, boolean hasItem) {
         this.currentRoom = startingRoom;
+        this.hasItem = hasItem;
     }
 
 
@@ -13,6 +15,14 @@ public class Player {
 
     public void setCurrentRoom(Room currentRoom) {
         this.currentRoom = currentRoom;
+    }
+
+    public boolean getHasItem(){
+        return hasItem;
+    }
+
+    public void setHasItem(boolean hasItem){
+        this.hasItem = hasItem;
     }
 
     public void moveLeft() {
