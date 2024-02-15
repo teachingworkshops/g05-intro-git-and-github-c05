@@ -84,12 +84,12 @@ public class Main {
 
         rooms.add(entranceRoom);
 
-        int roomID = 1;
         String description = "";
+        String roomName = "";
         while(in.hasNextLine()){
             description=in.nextLine();
-            rooms.add(new Room("Room "+roomID,description));
-            roomID++;
+            roomName = description.split(":")[0];
+            rooms.add(new Room(roomName,description));
         }
         rooms.add(exitRoom);
 
@@ -113,7 +113,7 @@ public class Main {
     
         while (true) {
             System.out.println("Description: " + player.getCurrentRoom().getDescription());
-            System.out.println("Choose a door: (L)eft, (R)ight, (B)ack, (Q)uit\n-----------------------------------------------------");
+            System.out.println("Choose a door: (L)eft, (R)ight, (B)ack, (C)heck paths (Q)uit\n-----------------------------------------------------");
     
             String choice = scanner.next();
     
@@ -130,6 +130,9 @@ public class Main {
                     player.moveBack();
                     steps++;
                     break;
+                case "C":
+                    player.checkPaths();
+                    break;
                 case "Q":
                     System.out.println("Exiting the game. Goodbye!");
                     System.exit(0);
@@ -138,8 +141,6 @@ public class Main {
             }
     
             System.out.println("Running count of steps: " + steps); // Print the running count of steps
-
-            
     
             if (player.getCurrentRoom().isExit()) {
                 scanner.close();
@@ -148,5 +149,4 @@ public class Main {
             }
         }
     }
-    
 }

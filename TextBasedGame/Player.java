@@ -6,7 +6,6 @@ public class Player {
         this.currentRoom = startingRoom;
     }
 
-
     public Room getCurrentRoom() {
         return currentRoom;
     }
@@ -37,5 +36,29 @@ public class Player {
         } else {
             System.out.println("////THE BACK DOOR WON'T OPEN!////");
         }
+    }
+    
+    public void checkPaths() {
+        String leftRoomName, rightRoomName, backRoomName;
+        try{
+            leftRoomName = currentRoom.getLeftRoom().getName();
+
+        }
+        catch (NullPointerException e) {
+            leftRoomName = "Wont open";
+        }
+        try {
+            rightRoomName = currentRoom.getRightRoom().getName();
+        }
+        catch (NullPointerException e) {
+            rightRoomName = "Wont open"; 
+        }
+        try {
+            backRoomName = currentRoom.getBackRoom().getName();
+        }
+        catch (NullPointerException e) {
+            backRoomName = "Wont open"; 
+        }
+        System.out.printf("Left Room: %s\nRight Room: %s\nBack Room: %s\n", leftRoomName, rightRoomName, backRoomName);
     }
 }
